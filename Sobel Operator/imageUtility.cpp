@@ -1,14 +1,14 @@
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/opencv.hpp>
 /*******************************************************************************
 ------------------------------------------------------------------------
-Program  :  main.cpp
-Purpose  :  Main
+Program  :  imageUtility.cpp
+Purpose  :  utility file for image manupulation
 Author   :  Marimuthu, Prasanna
 Date     :  23.01.2019
 *******************************************************************************/
 
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/opencv.hpp>
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include <string>
@@ -23,6 +23,7 @@ cv::Mat imageGrey;
 size_t numRows() {
     return imageRGBA.rows;
 }
+    
 size_t numCols() {
     return imageRGBA.cols;
 }
@@ -50,7 +51,6 @@ void saveImage(const std::string& output_file, unsigned char* data_ptr) {
     cv::Mat output(numRows(), numCols(), CV_8UC1, (void*)data_ptr);
     cv::imwrite(output_file.c_str(), output);
 }
-
 
 void createDeviceImageMemory(uchar4** h_rgbaImage, unsigned char** h_greyImage, unsigned char** h_sobelImage,
                              uchar4** d_rgbaImage, unsigned char** d_greyImage, unsigned char** d_sobelImage) {
